@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ name }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "gestion_clients/create.css" %}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+    {% for message in messages %}
+        <div class=" -0 m-4">
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p id="label">Ajouter un {{ name }}</p>
+        {% for element in form %}
+            <div class="{% if element.name not in multiupload %}mb-3{% endif %} {% if element.errors %}errors {% endif %}">
+                {{ element.label }}
+                {% if element.name in multiupload %}
+                    <div class="controls">
+                    <div class="entry input-group upload-input-group mb-3">
+                {% endif %}
+                {{ element }}
+                {% if element.name in multiupload %}
+                    <button class="btn btn-upload btn-success btn-add" type="button">
+                        <i class="fa fa-plus"> </i>
+                    </button>
+                {% endif %}
+                {% if element.name in multiupload %}
+                    </div>
+                    </div>
+                {% endif %}
+                {{ element.errors }}
+            </div>
+
+        {% endfor %}
+        <button type="submit">Ajouter</button>
+    </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '.btn-add', function (e) {
+                e.preventDefault();
+                var controlForm = $(this).parent().parent('.controls:first'),
+                    currentEntry = $(this).parents('.entry:first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
+                newEntry.find('input').val('');
+                controlForm.find('.entry:not(:last) .btn-add')
+                    .removeClass('btn-add').addClass('btn-remove')
+                    .removeClass('btn-success').addClass('btn-danger')
+                    .html('<span class="fa fa-trash"> </span>');
+            }).on('click', '.btn-remove', function (e) {
+                $(this).parents('.entry:first').remove();
+                e.preventDefault();
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

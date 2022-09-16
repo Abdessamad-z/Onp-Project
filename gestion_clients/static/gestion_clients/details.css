@@ -1,0 +1,16 @@
+input[type="file"]{
+    display: none   ;
+}
+
+.btns{
+    width: 0;
+    text-align: center;
+
+}
+tr{
+    vertical-align: middle;
+}
+.underhead{
+    background-color: red;
+    text-align: center;
+}

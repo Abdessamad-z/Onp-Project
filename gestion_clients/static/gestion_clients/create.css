@@ -1,0 +1,58 @@
+form {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 25px;
+    max-width: 900px;
+    font-size: 1.2em;
+    padding: 10px 10px 0.5em;
+    overflow: visible;
+}
+
+#label {
+    color: grey;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: auto auto 2%;
+}
+
+.cont {
+    margin-top: 0.5%;
+}
+
+button[type=submit] {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    background-color: #1f0050;
+    color: white;
+    border: 1px solid #1f0050;
+    font-size: 1em;
+    margin: auto;
+}
+
+button[type=submit]:hover,button[type=submit]:active{
+    background-color: #320777;
+    border-color: #320777;
+}
+
+.errorlist {
+    font-size: 70%;
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    color: #c90000;
+}
+
+.errors input {
+    border-color: #c90000;
+    background-color: #fc8f8f;
+}
+
+.errors label {
+    color: #c90000;
+}
+

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Office national des peches
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "gestion_clients/index.css" %}"/>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+    {% for message in messages %}
+        <div class="m-4">
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row mt-5">
+        <div class="col mx-5">
+            <div class="col-md">
+                <div class="card text-center text-white  mb-3" id="total-orders">
+                    <div class="card-header">
+                        <h5 class="card-title">Nombre des navires</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ nb_arma }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mx-5">
+            <div class="col-md">
+                <div class="card text-center text-white  mb-3" id="orders-delivered">
+                    <div class="card-header">
+                        <h5 class="card-title">Nombre des mareyeurs</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ nb_mara }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mx-5">
+            <div class="col-md">
+                <div class="card text-center text-white  mb-3" id="orders-pending">
+                    <div class="card-header">
+                        <h5 class="card-title">Total des Document</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ nb_doc }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

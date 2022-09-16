@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Document {{ who }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "gestion_clients/file.css" %}"/>
+{% endblock %}
+
+{% block body %}
+    {% if file %}
+    <embed src="{{ file.url }}" type="application/pdf" id="pdf" />
+    {% endif %}
+    {% if not file %}
+    <h1>Document est vide</h1>
+    {% endif %}
+{#    <iframe src="{{ file.url }}" style="width:600px; height:500px;" frameborder="0"></iframe>#}
+{% endblock %}

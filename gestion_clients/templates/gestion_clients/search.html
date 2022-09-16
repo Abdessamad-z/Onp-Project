@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ name }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "gestion_clients/../../static/gestion_clients/search.css" %}"/>
+{% endblock %}
+
+{% block body %}
+    <form action="" class="container m-auto p-3" method="post">
+        {% csrf_token %}
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-10">
+                {% for message in messages %}
+                    <div class="m-4">
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    </div>
+                {% endfor %}
+                <p id="labelSearch">Veuillez entrer l'identifiant du {{ name }}</p>
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="search" class="form-control" placeholder="L'indetifiant...">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                <p id="add">Pour ajouter une nouvelle antitée <a href="{% url link %}"> ici </a></p>
+            </div>
+        </div>
+        {% comment %}<label for="search" id="labelSearch">Veuillez entrer l'identifiant du {{ name }}</label>
+        <h6 class="error">{{ error }}</h6>
+        <span id="container">
+                    <input type="search" class="form-control" name="search" id="inputSearch">
+                    <input type="submit" class="form-control" value="Chercher" id="btnSearch">
+                </span>
+        <p id="add">Pour ajouter une nouvelle antitée <a href="{% url link %}"> ici </a></p>{% endcomment %}
+    </form>
+    {#    <iframe src="{% static "gestion_clients/tp-automatisme.pdf" %}" style="width:600px; height:500px;" frameborder="0"></iframe>#}
+{% endblock %}
