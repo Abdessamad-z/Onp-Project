@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 from .validators import *
 
 
-def myfilefield():
+def myfilefield(req):
     return forms.FileField(widget=forms.FileInput(attrs={'accept': 'application/pdf,image/*', "class": "form-control"}),
-                           validators=[validate_file_extension, validate_type], required=True)
+                           validators=[validate_file_extension, validate_type], required=req)
 
 
 
@@ -19,23 +19,23 @@ class CreatUserForm(UserCreationForm):
 
 class NavireForm(forms.Form):
     matricule = forms.CharField(max_length=30, widget=forms.TextInput(attrs={"class": "form-control"}))
-    acte_de_nationalite = myfilefield()
-    armateur_ou_RC = myfilefield()
-    acte_cession_delegation = myfilefield()
-    divers_documents = myfilefield()
+    acte_de_nationalite = myfilefield(True)
+    armateur_ou_RC = myfilefield(True)
+    acte_cession_delegation = myfilefield(True)
+    divers_documents = myfilefield(True)
 
 
 class MareyeurForm(forms.Form):
     code_national = forms.CharField(max_length=30, widget=forms.TextInput(attrs={"class": "form-control"}))
-    cin_mareyeur=myfilefield()
-    rc_ou_statut = myfilefield()
-    acte_de_cession = myfilefield()
-    carte_marayeur_ou_autorisation = myfilefield()
-    divers_documents = myfilefield()
+    cin_mareyeur=myfilefield(True)
+    rc_ou_statut = myfilefield(True)
+    acte_de_cession = myfilefield(True)
+    carte_marayeur_ou_autorisation = myfilefield(True)
+    divers_documents = myfilefield(True)
 
 
 class DocumentDetailsForm(forms.Form):
-    file = myfilefield()
+    file = myfilefield(False)
     delete = forms.BooleanField(required=False)
 
     def __init__(self, *args, **kwargs):
